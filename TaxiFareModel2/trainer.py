@@ -3,6 +3,7 @@ from termcolor import colored
 import mlflow
 from TaxiFareModel2.data import get_data, get_data_from_gcp, clean_data
 from TaxiFareModel2.encoders import TimeFeaturesEncoder, DistanceTransformer
+from TaxiFareModel2.params import BUCKET_NAME, BUCKET_TRAIN_DATA_PATH, MODEL_NAME, MODEL_VERSION
 from TaxiFareModel2.utils import compute_rmse
 from memoized_property import memoized_property
 from mlflow.tracking import MlflowClient
@@ -11,6 +12,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from google.cloud import storage
 
 MLFLOW_URI = "https://mlflow.lewagon.co/"
 EXPERIMENT_NAME = "first_experiment"
@@ -69,19 +71,19 @@ class Trainer(object):
         self.mlflow_log_metric("rmse", rmse)
         return round(rmse, 2)
 
-    def save_model(self):
-        """Save the model into a .joblib format"""
-        joblib.dump(self.pipeline, 'model.joblib')
-        print(colored("model.joblib saved locally", "green"))
+    # def save_model(self):
+        # """Save the model into a .joblib format"""
+        # joblib.dump(self.pipeline, 'model.joblib')
+        # print(colored("model.joblib saved locally", "green"))
 
-    def save_model_to_gcp(reg):
+    def save_model_to_gcp(self):
         """Save the model into a .joblib and upload it on Google Storage /models folder
         HINTS : use sklearn.joblib (or jbolib) libraries and google-cloud-storage"""
         from sklearn.externals import joblib
         local_model_name = 'model.joblib'
         # saving the trained model to disk (which does not really make sense
         # if we are running this code on GCP, because then this file cannot be accessed once the code finished its execution)
-        joblib.dump(reg, local_model_name)
+        joblib.dump(self.pipeline, local_model_name)
         print("saved model.joblib locally")
         client = storage.Client().bucket(BUCKET_NAME)
         storage_location = f"models/{MODEL_NAME}/{MODEL_VERSION}/{local_model_name}"
@@ -129,4 +131,5 @@ if __name__ == "__main__":
     trainer.run()
     rmse = trainer.evaluate(X_test, y_test)
     print(f"rmse: {rmse}")
-    trainer.save_model()
+    #trainer.save_model()
+    trainer.save_model_to_gcp()
