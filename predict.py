@@ -3,7 +3,7 @@ from math import sqrt
 
 import joblib
 import pandas as pd
-from TaxiFareModel.params import MODEL_NAME
+from TaxiFareModel2.params import MODEL_NAME
 from google.cloud import storage
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 

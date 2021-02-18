@@ -1,6 +1,6 @@
 import pandas as pd
 
-from TaxiFareModel.utils import simple_time_tracker
+from TaxiFareModel2.utils import simple_time_tracker
 from google.cloud import storage
 
 AWS_BUCKET_PATH = "s3://wagon-public-datasets/taxi-fare-train.csv"

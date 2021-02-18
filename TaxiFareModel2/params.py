@@ -9,7 +9,7 @@
 
 ### GCP Storage - - - - - - - - - - - - - - - - - - - - - -
 
-BUCKET_NAME = 'XXX'
+BUCKET_NAME = 'wagon-ml-laure-305109'
 
 ##### Data  - - - - - - - - - - - - - - - - - - - - - - - -
 

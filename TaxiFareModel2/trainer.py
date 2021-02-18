@@ -1,9 +1,9 @@
 import joblib
 from termcolor import colored
 import mlflow
-from TaxiFareModel.data import get_data, get_data_from_gcp, clean_data
-from TaxiFareModel.encoders import TimeFeaturesEncoder, DistanceTransformer
-from TaxiFareModel.utils import compute_rmse
+from TaxiFareModel2.data import get_data, get_data_from_gcp, clean_data
+from TaxiFareModel2.encoders import TimeFeaturesEncoder, DistanceTransformer
+from TaxiFareModel2.utils import compute_rmse
 from memoized_property import memoized_property
 from mlflow.tracking import MlflowClient
 from sklearn.compose import ColumnTransformer

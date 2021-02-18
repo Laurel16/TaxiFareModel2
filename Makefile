@@ -2,10 +2,10 @@
 LOCAL_PATH=PATH_TO_FILE_train_1k.csv
 
 # project id
-PROJECT_ID=XXX
+PROJECT_ID=possible-flag-305109
 
 # bucket name
-BUCKET_NAME=XXX
+BUCKET_NAME=wagon-ml-laure-305109
 
 # bucket directory in which to store the uploaded file (we choose to name this data as a convention)
 BUCKET_FOLDER=data
@@ -63,7 +63,7 @@ RUNTIME_VERSION=1.15
 
 ##### Package params  - - - - - - - - - - - - - - - - - - -
 
-PACKAGE_NAME=TaxiFareModel
+PACKAGE_NAME=TaxiFareModel2
 FILENAME=trainer
 
 ##### Job - - - - - - - - - - - - - - - - - - - - - - - - -
